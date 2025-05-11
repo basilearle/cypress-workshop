@@ -14,27 +14,28 @@ import {
   Center,
 } from '@mantine/core';
 import { IconCheck } from '@tabler/icons-react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useSearchParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { Product } from '~/data-fixtures';
 
 export function Confirmation() {
   const theme = useMantineTheme();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Get product ID from URL query parameters
+  const productId = searchParams.get('productId');
+
   useEffect(() => {
+    // Check for productId inside useEffect to properly trigger error boundary
+    if (!productId) {
+      throw new Error('No product selected');
+    }
     const fetchProductDetails = async () => {
       try {
-        // Get the selected product ID from localStorage
-        const productId = localStorage.getItem('selectedProductId');
-
-        if (!productId) {
-          throw new Error('No product selected');
-        }
-
         // Fetch the product details from the API
         const response = await fetch(`/api/products/${productId}`);
 
@@ -53,7 +54,7 @@ export function Confirmation() {
     };
 
     fetchProductDetails();
-  }, []);
+  }, [productId]);
 
   // Show loading state
   if (loading) {

@@ -15,6 +15,7 @@ import {
 } from '@mantine/core';
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
+
 import { Product } from '~/data-fixtures';
 
 export function Products() {
@@ -67,9 +68,8 @@ export function Products() {
 
   const handleSelectProduct = (productId: number) => {
     console.log(`Selected product: ${productId}`);
-    // Store the selected product ID in localStorage
-    localStorage.setItem('selectedProductId', productId.toString());
-    navigate('/confirmation');
+    // Use query parameters instead of localStorage
+    navigate(`/confirmation?productId=${productId}`);
   };
 
   const productCards = products.map((product) => (
