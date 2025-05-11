@@ -80,8 +80,8 @@ export function Landing() {
               We sell innovative solutions for modern businesses
             </Text>
             <Group justify="center">
-              <Button size="lg" variant="white" color="dark">
-                Buy Things
+              <Button size="lg" variant="white" color="dark" component="a" href="/products">
+                View Products
               </Button>
               <Button size="lg" variant="outline" color="white">
                 Learn More
