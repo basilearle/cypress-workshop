@@ -1,3 +1,5 @@
+import { products } from '~/data-fixtures';
+
 describe('happy path flow', () => {
 
   beforeEach(() => cy.visit('/'));
@@ -6,12 +8,32 @@ describe('happy path flow', () => {
     // Verify we're on the landing page
     cy.contains('h1', 'Welcome');
 
+    // Intercept GET /api/products - Returns all products
+    cy.intercept('GET', '/api/products', { body: products })
+      .as('getProducts');
+
     // Navigate to the products page
     cy.contains('a', 'View Products').click();
+
 
     // Verify we're on the products page
     cy.url().should('include', '/products');
     cy.contains('h1', 'Our Products');
+
+    // Intercept GET /api/products/:id - Returns a single product by ID
+    cy.intercept('GET', '/api/products/*', (req) => {
+      // Extract the product ID from the URL
+      const productId = parseInt(req.url.split('/').pop() || '0', 10);
+
+      // Find the product with the matching ID
+      const product = products.find((p) => p.id === productId);
+
+      if (product) {
+        req.reply(product);
+      } else {
+        req.reply({ statusCode: 404 });
+      }
+    }).as('getProduct');
 
     // Select the first product (Premium Business Suite)
     cy.contains('.mantine-Card-root', 'Premium Business Suite')
