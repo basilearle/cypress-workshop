@@ -15,7 +15,7 @@ import {
 } from '@mantine/core';
 import { useNavigate } from 'react-router';
 import { useState, useEffect } from 'react';
-import { Product } from '../../data/products';
+import { Product } from '~/data-fixtures';
 
 export function Products() {
   const theme = useMantineTheme();
@@ -67,8 +67,8 @@ export function Products() {
 
   const handleSelectProduct = (productId: number) => {
     console.log(`Selected product: ${productId}`);
-    // In a real application, you would store the selected product in state or context
-    // and then use it in the confirmation page
+    // Store the selected product ID in localStorage
+    localStorage.setItem('selectedProductId', productId.toString());
     navigate('/confirmation');
   };
 
