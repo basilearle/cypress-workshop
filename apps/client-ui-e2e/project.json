@@ -6,5 +6,24 @@
   "tags": [],
   "implicitDependencies": ["client-ui"],
   "// targets": "to see all targets run: nx show project client-ui-e2e --web",
-  "targets": {}
+  "targets": {
+    "e2e:chrome": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx run client-ui-e2e:e2e --browser=chrome --headless"
+      }
+    },
+    "e2e:firefox": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx run client-ui-e2e:e2e --browser=firefox --headless"
+      }
+    },
+    "e2e:webkit": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "nx run client-ui-e2e:e2e --browser=webkit --headless"
+      }
+    }
+  }
 }
