@@ -1,4 +1,4 @@
-describe('Error Handling', () => {
+describe('error handling flow', () => {
   it('should display error page when navigating to confirmation without productId', () => {
     // Navigate directly to the confirmation page without a productId
     cy.visit('/confirmation');

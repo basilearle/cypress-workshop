@@ -66,6 +66,18 @@ export function Products() {
     );
   }
 
+  // Show empty state when no products are available
+  if (products.length === 0) {
+    return (
+      <Center data-testid="no-products-fallback" style={{ height: '70vh', flexDirection: 'column' }}>
+        <Text size="xl" fw={700} mb="md">No Products Available</Text>
+        <Text c="dimmed" ta="center" maw={500}>
+          We're sorry, but there are currently no products available. Please check back later for our updated inventory.
+        </Text>
+      </Center>
+    );
+  }
+
   const handleSelectProduct = (productId: number) => {
     console.log(`Selected product: ${productId}`);
     // Use query parameters instead of localStorage
