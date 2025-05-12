@@ -11,7 +11,7 @@ describe('no products flow', () => {
     cy.wait('@getEmptyProducts');
 
     // Verify the no-products-fallback is displayed
-    cy.get('[data-testid="no-products-fallback"]').should('be.visible');
+    cy.getByTestId('no-products-fallback').should('be.visible');
 
     // Verify the correct message is displayed
     cy.contains('No Products Available');
