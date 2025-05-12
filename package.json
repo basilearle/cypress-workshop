@@ -51,6 +51,7 @@
     "jsdom": "~22.1.0",
     "msw": "^2.0.0",
     "nx": "21.0.3",
+    "playwright-webkit": "^1.52.0",
     "postcss": "^8.4.38",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",

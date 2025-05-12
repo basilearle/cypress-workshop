@@ -13,6 +13,7 @@ export default defineConfig({
       },
       ciWebServerCommand: 'nx run client-ui:serve-static',
     }),
+    experimentalWebKitSupport: true,
     baseUrl: 'http://localhost:4200',
   },
 });
