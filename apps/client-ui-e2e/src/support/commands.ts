@@ -14,14 +14,10 @@
 declare namespace Cypress {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Chainable<Subject> {
-    getByTestId(testId: string): Chainable<JQuery<HTMLElement>>;
+
   }
 }
 
-// Custom command to get an element by data-testid attribute
-Cypress.Commands.add('getByTestId', (testId) => {
-  return cy.get(`[data-testid="${testId}"]`).should('exist');
-});
 //
 // -- This is a child command --
 // Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
