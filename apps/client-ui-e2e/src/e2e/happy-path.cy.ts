@@ -15,6 +15,7 @@ describe('happy path flow', () => {
     // Navigate to the products page
     cy.contains('a', 'View Products').click();
 
+    cy.wait('@getProducts');
 
     // Verify we're on the products page
     cy.url().should('include', '/products');
@@ -40,6 +41,8 @@ describe('happy path flow', () => {
       .within(() => {
         cy.contains('button', 'Select').click();
       });
+
+    cy.wait('@getProduct');
 
     // Verify we're on the confirmation page
     cy.url().should('include', '/confirmation');
